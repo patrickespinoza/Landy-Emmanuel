@@ -4,41 +4,28 @@ import { motion } from "framer-motion";
 import {
   MapPin,
   Clock3,
-  Church,
-  Wine,
-  ArrowUpRight,
   CalendarDays,
+  ArrowUpRight,
 } from "lucide-react";
 
 // ==========================================
 // INFORMACIÓN EDITABLE - WEDLY
 // ==========================================
 
-// FECHA DE LA CELEBRACIÓN
 const fechaCelebracion = {
-  dia: "Jueves",
-  fecha: "11",
-  mesAnio: "Junio 2026",
+  dia: "Sábado",
+  fecha: "12",
+  mesAnio: "Diciembre 2026",
 };
 
-// CEREMONIA
-const ceremonia = {
-  titulo: "Ceremonia",
-  hora: "4:30 PM",
-  lugar: "Salón Event Center",
-  direccion: "Puebla, Puebla",
-  ubicacion: "https://maps.app.goo.gl/TsSDUBKAractwi8F8",
-  icono: Church,
-};
-
-// RECEPCIÓN
-const recepcion = {
-  titulo: "Recepción",
-  hora: "8:00 PM",
-  lugar: "Jardín Magnolia",
-  direccion: "Atlixco, Puebla",
-  ubicacion: "https://maps.app.goo.gl/TsSDUBKAractwi8F8",
-  icono: Wine,
+const evento = {
+  titulo: "Celebración",
+  hora: "9:00 a. m.",
+  lugar: "El Socavón Pachuca",
+  direccion:
+    "Antigua, Carr a Real del Monte 102, San Juan Pachuca, 42010 Pachuca de Soto, Hgo.",
+  ubicacion:
+    "https://maps.app.goo.gl/e7YXrHxFYAqPW33K7",
 };
 
 // ==========================================
@@ -61,7 +48,7 @@ const fadeUp = {
 };
 
 // ==========================================
-// TARJETA REUTILIZABLE
+// TARJETA DEL EVENTO
 // ==========================================
 
 const TarjetaEvento = ({
@@ -70,7 +57,6 @@ const TarjetaEvento = ({
   lugar,
   direccion,
   ubicacion,
-  icono: Icono,
 }) => {
   return (
     <motion.article
@@ -82,67 +68,30 @@ const TarjetaEvento = ({
       className="
         relative
         w-full max-w-xl
-        bg-[#F7F4ED]
-        border border-[#D8CFBF]
-        rounded-tl-[4rem]
-        rounded-br-[4rem]
-        rounded-tr-[1rem]
-        rounded-bl-[1rem]
-        shadow-[0_20px_60px_rgba(0,0,0,0.18)]
-        px-7 py-12
-        sm:px-12 sm:py-14
-        overflow-hidden
+        border border-[#A9998B]
+        p-2 sm:p-3
+        text-center
       "
     >
-      {/* DETALLE DECORATIVO SUPERIOR */}
+      {/* MARCO INTERIOR */}
       <div
         className="
-          absolute top-0 left-1/2
-          -translate-x-1/2
-          w-32 h-[3px]
-          bg-[#B89B5E]
+          relative
+          border border-[#A9998B]/40
+          px-5 py-12
+          sm:px-12 sm:py-14
         "
-      />
-
-      {/* DECORACIÓN DE FONDO */}
-      <div
-        className="
-          absolute -top-16 -right-16
-          w-48 h-48
-          rounded-full
-          border border-[#B89B5E]/15
-          pointer-events-none
-        "
-      />
-
-      <div
-        className="
-          absolute -top-9 -right-9
-          w-32 h-32
-          rounded-full
-          border border-[#B89B5E]/15
-          pointer-events-none
-        "
-      />
-
-      <div className="relative z-10 flex flex-col items-center text-center">
-
-        {/* ICONO PRINCIPAL */}
+      >
+        {/* ORNAMENTO SUPERIOR */}
         <div
           className="
-            w-20 h-20
-            rounded-full
-            border border-[#B89B5E]/40
-            bg-[#5E6650]/5
             flex items-center justify-center
-            mb-6
+            gap-3 mb-9
           "
         >
-          <Icono
-            size={36}
-            strokeWidth={1.3}
-            className="text-[#B89B5E]"
-          />
+          <span className="w-12 h-px bg-[#A9998B]" />
+          <span className="text-[#EDE5DC] text-sm">✦</span>
+          <span className="w-12 h-px bg-[#A9998B]" />
         </div>
 
         {/* TÍTULO */}
@@ -150,56 +99,96 @@ const TarjetaEvento = ({
           className="
             text-3xl sm:text-4xl
             font-playfair
-            text-[#343A2D]
-            tracking-wide
+            font-normal
+            text-white
           "
         >
           {titulo}
         </h2>
 
-        <div className="flex items-center gap-3 mt-6 mb-9">
-          <div className="w-12 h-[1px] bg-[#B89B5E]/70" />
-          <div className="w-2 h-2 rotate-45 border border-[#B89B5E]" />
-          <div className="w-12 h-[1px] bg-[#B89B5E]/70" />
-        </div>
-
         {/* HORA */}
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center mt-10">
           <Clock3
-            size={21}
-            strokeWidth={1.5}
-            className="text-[#B89B5E] mb-3"
+            size={25}
+            strokeWidth={1.2}
+            className="text-[#EDE5DC] mb-4"
           />
 
-          <p className="uppercase tracking-[0.3em] text-xs font-semibold text-[#8C774D]">
+          <p
+            className="
+              uppercase
+              tracking-[0.25em]
+              text-xs
+              text-[#D3C3B4]
+            "
+          >
             Hora del evento
           </p>
 
-          <p className="text-2xl sm:text-3xl font-playfair text-[#343A2D] mt-3">
+          <p
+            className="
+              text-2xl sm:text-3xl
+              font-playfair
+              text-white
+              mt-4
+            "
+          >
             {hora}
           </p>
         </div>
 
         {/* SEPARADOR */}
-        <div className="w-16 h-[1px] bg-[#D8CFBF] my-9" />
+        <div
+          className="
+            flex items-center justify-center
+            gap-4 my-10
+          "
+        >
+          <span className="w-14 h-px bg-[#A9998B]" />
+          <span className="text-[#EDE5DC]">✦</span>
+          <span className="w-14 h-px bg-[#A9998B]" />
+        </div>
 
         {/* LUGAR */}
         <div className="flex flex-col items-center">
           <MapPin
-            size={22}
-            strokeWidth={1.5}
-            className="text-[#B89B5E] mb-3"
+            size={27}
+            strokeWidth={1.2}
+            className="text-[#EDE5DC] mb-4"
           />
 
-          <p className="uppercase tracking-[0.3em] text-xs font-semibold text-[#8C774D]">
+          <p
+            className="
+              uppercase
+              tracking-[0.25em]
+              text-xs
+              text-[#D3C3B4]
+            "
+          >
             Lugar
           </p>
 
-          <h3 className="text-2xl sm:text-3xl font-playfair text-[#343A2D] mt-3">
+          <h3
+            className="
+              text-2xl sm:text-3xl
+              font-playfair
+              text-white
+              mt-5
+              leading-snug
+            "
+          >
             {lugar}
           </h3>
 
-          <p className="text-[#5E6650]/80 mt-4 leading-relaxed text-sm sm:text-base max-w-sm">
+          <p
+            className="
+              text-[#EDE5DC]
+              mt-5
+              leading-relaxed
+              text-sm sm:text-base
+              max-w-sm
+            "
+          >
             {direccion}
           </p>
         </div>
@@ -214,37 +203,46 @@ const TarjetaEvento = ({
           className="
             group
             mt-10
-            inline-flex items-center justify-center gap-3
-            bg-[#5E6650]
-            hover:bg-[#4B5340]
-            text-white
+            inline-flex
+            items-center justify-center
+            gap-3
+            bg-[#EDE5DC]
+            hover:bg-white
+            text-[#171717]
             px-8 py-4
-            rounded-full
-            shadow-[0_8px_25px_rgba(94,102,80,0.25)]
+            border border-[#EDE5DC]
             transition-colors duration-300
-            text-sm font-medium tracking-wide
+            text-sm
+            font-medium
+            tracking-wide
           "
         >
-          <MapPin size={18} strokeWidth={1.7} />
+          <MapPin size={18} strokeWidth={1.5} />
 
           Ver ubicación
 
           <ArrowUpRight
             size={17}
-            className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+            className="
+              transition-transform duration-300
+              group-hover:translate-x-1
+              group-hover:-translate-y-1
+            "
           />
         </motion.a>
-      </div>
 
-      {/* DETALLE DECORATIVO INFERIOR */}
-      <div
-        className="
-          absolute bottom-0 left-1/2
-          -translate-x-1/2
-          w-32 h-[3px]
-          bg-[#B89B5E]
-        "
-      />
+        {/* ORNAMENTO INFERIOR */}
+        <div
+          className="
+            flex items-center justify-center
+            gap-3 mt-10
+          "
+        >
+          <span className="w-12 h-px bg-[#A9998B]" />
+          <span className="text-[#EDE5DC] text-sm">✦</span>
+          <span className="w-12 h-px bg-[#A9998B]" />
+        </div>
+      </div>
     </motion.article>
   );
 };
@@ -259,29 +257,31 @@ const Celebracion = () => {
       className="
         relative
         w-full
-        bg-[#5E6650]
+        bg-[#171717]
         py-20 sm:py-28
         px-5 sm:px-8
         overflow-hidden
       "
     >
-      {/* DECORACIÓN DE FONDO */}
+      {/* DECORACIONES DE ESQUINA */}
       <div
         className="
-          absolute top-20 -left-32
-          w-80 h-80
-          rounded-full
-          border border-[#E7D7B1]/10
+          absolute
+          top-8 left-8
+          w-20 h-20
+          border-t border-l
+          border-[#EDE5DC]/20
           pointer-events-none
         "
       />
 
       <div
         className="
-          absolute bottom-20 -right-32
-          w-80 h-80
-          rounded-full
-          border border-[#E7D7B1]/10
+          absolute
+          bottom-8 right-8
+          w-20 h-20
+          border-b border-r
+          border-[#EDE5DC]/20
           pointer-events-none
         "
       />
@@ -294,32 +294,55 @@ const Celebracion = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-14"
         >
+          {/* ICONO DECORATIVO */}
           <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="w-10 h-[1px] bg-[#E7D7B1]/60" />
+            <div className="w-10 h-px bg-[#A9998B]" />
 
             <CalendarDays
-              size={19}
-              strokeWidth={1.4}
-              className="text-[#E7D7B1]"
+              size={20}
+              strokeWidth={1.3}
+              className="text-[#EDE5DC]"
             />
 
-            <div className="w-10 h-[1px] bg-[#E7D7B1]/60" />
+            <div className="w-10 h-px bg-[#A9998B]" />
           </div>
 
-          <p className="uppercase tracking-[0.4em] text-[#E7D7B1] text-xs sm:text-sm font-semibold">
+          <p
+            className="
+              uppercase
+              tracking-[0.3em]
+              text-[#EDE5DC]
+              text-xs sm:text-sm
+              font-serif
+            "
+          >
             Nuestra celebración
           </p>
 
-          <h2 className="text-4xl sm:text-5xl font-playfair text-[#F7F4ED] mt-5">
+          <h2
+            className="
+              text-4xl sm:text-5xl
+              font-playfair
+              text-white
+              mt-5
+            "
+          >
             Un día inolvidable
           </h2>
 
           {/* FECHA */}
           <div className="mt-12 flex flex-col items-center">
 
-            <p className="text-[#E7D7B1] tracking-[0.35em] uppercase text-sm sm:text-base font-semibold">
+            <p
+              className="
+                text-[#EDE5DC]
+                tracking-[0.3em]
+                uppercase
+                text-sm sm:text-base
+              "
+            >
               {fechaCelebracion.dia}
             </p>
 
@@ -327,33 +350,30 @@ const Celebracion = () => {
               className="
                 text-7xl sm:text-8xl md:text-9xl
                 font-playfair
-                text-[#F7F4ED]
+                text-white
                 leading-none
                 mt-4
-                drop-shadow-lg
               "
             >
               {fechaCelebracion.fecha}
             </h3>
 
-            <p className="text-[#E7D7B1] text-xl sm:text-2xl tracking-[0.2em] mt-5">
+            <p
+              className="
+                text-[#EDE5DC]
+                text-xl sm:text-2xl
+                tracking-[0.2em]
+                mt-5
+              "
+            >
               {fechaCelebracion.mesAnio}
             </p>
-
           </div>
         </motion.div>
 
-        {/* TARJETAS */}
-        <div
-          className="
-            grid grid-cols-1 lg:grid-cols-2
-            gap-10 lg:gap-8
-            items-stretch
-            justify-items-center
-          "
-        >
-          <TarjetaEvento {...ceremonia} />
-          <TarjetaEvento {...recepcion} />
+        {/* TARJETA DE UBICACIÓN */}
+        <div className="flex justify-center">
+          <TarjetaEvento {...evento} />
         </div>
 
         {/* MENSAJE FINAL */}
@@ -364,15 +384,16 @@ const Celebracion = () => {
           viewport={{ once: true }}
           className="
             text-center
-            text-[#E7D7B1]
-            font-playfair italic
+            text-[#EDE5DC]
+            font-playfair
+            italic
             text-lg sm:text-xl
             mt-16
+            px-4
           "
         >
           Cada momento será más especial con tu presencia.
         </motion.p>
-
       </div>
     </section>
   );
