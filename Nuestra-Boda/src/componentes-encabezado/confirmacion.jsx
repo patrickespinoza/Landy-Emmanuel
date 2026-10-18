@@ -537,7 +537,7 @@ export default function ConfirmacionAsistencia() {
                   strokeWidth={1.5}
                   className="shrink-0"
                 />
-                Confirmar con Landy (novia)
+                Confirmar con Landy 
               </motion.button>
 
               {/* WHATSAPP NOVIO */}
@@ -569,7 +569,7 @@ export default function ConfirmacionAsistencia() {
                   strokeWidth={1.5}
                   className="shrink-0"
                 />
-                Confirmar con Emmanuel (novio)
+                Confirmar con Emmanuel
               </motion.button>
             </div>
 
