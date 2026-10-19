@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import {
   Heart,
   MessageCircle,
-  Users,
   Check,
   X,
 } from "lucide-react";
@@ -43,13 +42,11 @@ const fadeUp = {
 export default function ConfirmacionAsistencia() {
   const [nombre, setNombre] = useState("");
   const [asistencia, setAsistencia] = useState("");
-  const [invitados, setInvitados] = useState("");
   const [mensaje, setMensaje] = useState("");
   const [confirmacion, setConfirmacion] = useState("");
 
   // ==========================================
   // ENVIAR CONFIRMACIÓN POR WHATSAPP
-  // FUNCIÓN ORIGINAL - SIN CAMBIOS
   // ==========================================
 
   const enviarConfirmacion = (numeroWhatsApp) => {
@@ -60,20 +57,7 @@ export default function ConfirmacionAsistencia() {
       return;
     }
 
-    if (
-      asistencia === "Sí asistiré" &&
-      (!invitados || Number(invitados) < 1)
-    ) {
-      setConfirmacion(
-        "Por favor, indica el número de invitados."
-      );
-      return;
-    }
-
     setConfirmacion("");
-
-    const numeroInvitados =
-      asistencia === "No asistiré" ? "0" : invitados;
 
     const textoWhatsApp = [
       "💍 *CONFIRMACIÓN DE ASISTENCIA*",
@@ -82,7 +66,6 @@ export default function ConfirmacionAsistencia() {
       "",
       `👤 *Nombre:* ${nombre.trim()}`,
       `💌 *Asistencia:* ${asistencia}`,
-      `👥 *Número de invitados:* ${numeroInvitados}`,
       "",
       "💬 *Mensaje para los novios:*",
       mensaje.trim() || "Sin mensaje adicional",
@@ -364,7 +347,6 @@ export default function ConfirmacionAsistencia() {
                   type="button"
                   onClick={() => {
                     setAsistencia("No asistiré");
-                    setInvitados("");
                   }}
                   className={`
                     flex items-center
@@ -385,50 +367,6 @@ export default function ConfirmacionAsistencia() {
                 </button>
               </div>
             </div>
-
-            {/* NÚMERO DE INVITADOS */}
-            {asistencia !== "No asistiré" && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                <label
-                  htmlFor="numero-invitados"
-                  className="
-                    flex items-center gap-2
-                    text-[#171717]
-                    text-sm
-                    font-medium
-                    mb-3
-                  "
-                >
-                  <Users size={17} />
-                  Número de invitados
-                </label>
-
-                <input
-                  id="numero-invitados"
-                  type="number"
-                  min="1"
-                  step="1"
-                  placeholder="Ej. 2"
-                  value={invitados}
-                  onChange={(e) => setInvitados(e.target.value)}
-                  className="
-                    w-full
-                    px-5 py-4
-                    bg-white
-                    text-[#171717]
-                    border border-[#B8A99B]
-                    placeholder:text-[#887B6E]
-                    outline-none
-                    focus:border-[#171717]
-                    transition-colors
-                  "
-                />
-              </motion.div>
-            )}
 
             {/* MENSAJE */}
             <div>
@@ -537,7 +475,7 @@ export default function ConfirmacionAsistencia() {
                   strokeWidth={1.5}
                   className="shrink-0"
                 />
-                Confirmar con Landy 
+                Confirmar con Landy
               </motion.button>
 
               {/* WHATSAPP NOVIO */}
